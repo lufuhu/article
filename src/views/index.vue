@@ -22,7 +22,7 @@
               :key="index"
               :class="form.id === item.id ? 'item-active':''"
               class="flex items-center justify-between px-3 border-b cursor-pointer">
-            <router-link class="flex-1 truncate py-3" :to="'/'+item.id">
+            <router-link class="flex-1 truncate py-3 text-sm" :to="'/'+item.id">
               {{ item.title }}
             </router-link>
             <div class="px-2">
@@ -30,7 +30,7 @@
                 <i class="el-icon-more"></i>
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item>
-                    <a :href="'https://www.luhufu.com/articles/'+item.title +'.html'" target="_blank">查看</a>
+                    <a :href="'http://www.luhufu.com/articles/'+item.title +'.html'" target="_blank">查看</a>
                   </el-dropdown-item>
                   <el-dropdown-item>
                     <div @click="clickDel(item)">删除</div>
@@ -59,13 +59,13 @@
           class="flex-1 flex flex-col w-full h-full">
         <div class="flex-none flex items-center">
           <el-input v-model="form.title" class="input-b-border" placeholder="标题"></el-input>
-          <el-button type="primary" @click="dialogVisible=true">保存</el-button>
+          <el-button class="mx-1" size="small" type="primary" @click="dialogVisible=true">保存</el-button>
         </div>
         <div class="flex-1">
           <iframe
               class="w-full h-full"
               ref="editormd"
-              src="http://www.tools.local/editor.md/index.html"
+              src="http://www.luhufu.com/tools/editor.md/index.html"
               frameborder="no"
               border="0"
               marginwidth="0"
@@ -80,7 +80,7 @@
         title="其他"
         :visible.sync="dialogVisible"
         width="60vh">
-      <el-form ref="form" :model="form" label-width="40px">
+      <el-form ref="form" size="small" :model="form" label-width="50px">
         <div class="flex">
           <el-form-item label="类型">
             <el-select v-model="form.type" placeholder="请选择">
