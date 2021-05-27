@@ -65,7 +65,7 @@
           <iframe
               class="w-full h-full"
               ref="editormd"
-              src="http://www.luhufu.com/tools/editor.md/index.html"
+              src="http://www.lufuhu.com/tools/editor.md/index.html"
               frameborder="no"
               border="0"
               marginwidth="0"
