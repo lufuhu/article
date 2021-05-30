@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 const Index = () => import('../views/index.vue')
+const Login = () => import('../views/login.vue')
 
 Vue.use(VueRouter)
 
@@ -10,6 +11,10 @@ const routes = [
         path: '/:id?',
         name: 'Index',
         component: Index,
+    }, {
+        path: '/login',
+        name: 'Login',
+        component: Login,
     }
 ]
 
