@@ -33,6 +33,9 @@
                     <a :href="'http://www.luhufu.com/articles/'+item.title +'.html'" target="_blank">查看</a>
                   </el-dropdown-item>
                   <el-dropdown-item>
+                    <div @click="clickBuild(item.id)">构建</div>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
                     <div @click="clickDel(item)">删除</div>
                   </el-dropdown-item>
                 </el-dropdown-menu>
@@ -213,6 +216,12 @@ export default {
       });
       this.articleMdList(this.params);
     },
+    articleMdBuildData: function () {
+      this.$message({
+        type: 'success',
+        message: '构建成功!'
+      });
+    },
     $route() {
       this.getDetails();
     }
@@ -237,7 +246,7 @@ export default {
     }, false);
   },
   methods: {
-    ...mapActions(['articleEnum', 'articleMdAdd', 'articleMdDetails', 'articleMdUpdate', "articleMdList", 'articleMdDel']),
+    ...mapActions(['articleEnum', 'articleMdAdd', 'articleMdDetails', 'articleMdUpdate', "articleMdList", 'articleMdDel', 'articleMdBuild']),
     getDetails() {
       this.loading = false;
       if (this.$route.params.id) {
@@ -271,6 +280,9 @@ export default {
         }, "*");
       }
     },
+    clickBuild(id) {
+      this.articleMdBuild({id: id});
+    },
     clickDel(item) {
       this.$confirm("是否删除此文章（" + item.title + "）", '提示', {
         confirmButtonText: '确定',
@@ -285,7 +297,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(['articleEnumData', 'articleMdAddData', 'articleMdDetailsData', 'articleMdUpdateData', "articleMdListData", 'articleMdDelData'])
+    ...mapGetters(['articleEnumData', 'articleMdAddData', 'articleMdDetailsData', 'articleMdUpdateData', "articleMdListData", 'articleMdDelData', 'articleMdBuildData'])
   }
 }
 </script>

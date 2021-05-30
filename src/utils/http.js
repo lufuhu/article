@@ -5,7 +5,7 @@ import router from '../router';
 
 export default function (method, url, params = {}) {
     let httpConfig = {
-        baseURL: process.env.NODE_ENV === "production" ? "/api/v1" : "http://www.laravel.local/api/v1",
+        baseURL: process.env.NODE_ENV === "production" ? "/api/v1" : "http://www.api.local/api/v1",
         method: method,
         url: url,
         data: qs.stringify(params),

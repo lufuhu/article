@@ -11,6 +11,7 @@ const store = new Vuex.Store({
         articleMdUpdate: {},
         articleMdDel: {},
         articleEnum: {},
+        articleMdBuild: {},
     },
     getters: {
         articleMdListData: (state) => {
@@ -30,6 +31,9 @@ const store = new Vuex.Store({
         },
         articleEnumData: (state) => {
             return state.articleEnum
+        },
+        articleMdBuildData: (state) => {
+            return state.articleMdBuild
         },
     },
     mutations: {
@@ -62,6 +66,11 @@ const store = new Vuex.Store({
             http('get', '/article/article_md_enum').then(res => {
                 state.articleEnum = res
             })
+        },
+        articleMdBuild(state, val) {
+            http('post', '/article/article_md_build/' + val.id).then(res => {
+                state.articleMdBuild = res
+            })
         }
     },
     actions: {
@@ -82,6 +91,9 @@ const store = new Vuex.Store({
         },
         articleEnum({commit}, val) {
             commit("articleEnum", val)
+        },
+        articleMdBuild({commit}, val) {
+            commit("articleMdBuild", val)
         },
     }
 })
