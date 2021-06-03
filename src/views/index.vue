@@ -107,7 +107,14 @@
           </el-form-item>
         </div>
         <el-form-item label="图片">
-          <el-input v-model="form.pic" placeholder="图片"></el-input>
+          <el-upload
+              class="avatar-uploader"
+              action="/api/upload"
+              :show-file-list="false"
+              :on-success="handleAvatarSuccess">
+            <img v-if="form.pic" :src="form.pic" class="avatar">
+            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+          </el-upload>
         </el-form-item>
         <el-form-item label="话题">
           <el-select
@@ -252,7 +259,7 @@ export default {
       if (this.$route.params.id) {
         this.form.id = this.$route.params.id;
         this.loading = true;
-        this.articleMdDetails(this.form);
+        this.articleMdDetails({id:this.form.id});
       } else {
         this.form = this.$options.data().form;
         this.setContent();
@@ -295,6 +302,9 @@ export default {
         }
       });
     },
+    handleAvatarSuccess(res, file) {
+      this.form.pic = URL.createObjectURL(file.raw);
+    },
   },
   computed: {
     ...mapGetters(['articleEnumData', 'articleMdAddData', 'articleMdDetailsData', 'articleMdUpdateData', "articleMdListData", 'articleMdDelData', 'articleMdBuildData'])
@@ -306,4 +316,5 @@ export default {
 .item-active {
   background-color: #f2f7fa;
 }
+
 </style>
